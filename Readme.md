@@ -14,12 +14,12 @@
 
 ## ✨ Key Features
 
-🎥 **Video Upload & Streaming** - Seamless video upload with adaptive streaming  
-👤 **User Authentication** - Secure login/signup with JWT tokens  
-💬 **Comments System** - Real-time commenting and replies  
-👍 **Like & Subscribe** - Interactive engagement features  
-🔍 **Search & Discovery** - Advanced video search and recommendations  
-📱 **Responsive Design** - Optimized for all devices  
+🎥 **Video Upload & Streaming** - Seamless video upload with adaptive streaming
+👤 **User Authentication** - Secure login/signup with JWT tokens
+💬 **Comments System** - Real-time commenting and replies
+👍 **Like & Subscribe** - Interactive engagement features
+🔍 **Search & Discovery** - Advanced video search and recommendations
+📱 **Responsive Design** - Optimized for all devices
 
 ---
 
