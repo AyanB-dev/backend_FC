@@ -1,12 +1,21 @@
 import "dotenv/config";
 // import mongoose, { connect, mongo } from "mongoose";
 // import { DB_NAME } from "./constants.js";
+import app from "./app.js";
+import asyncHandler from "./utils/asynchandler.js";
 
-import connectDB from "../db/db.js";
+import connectDB from "./db/db.js";
 
-
-
-connectDB();
+connectDB()
+    .then(() => {
+        app.listen(process.env.PORT || 8000, () => {
+            console.log(`Server is running on port ${process.env.PORT}`);
+        });
+    })
+  .catch((error) => {
+    console.error("Database connection failed:", error);
+    process.exit(1);
+  });
 
 /*
 import express from "express";
