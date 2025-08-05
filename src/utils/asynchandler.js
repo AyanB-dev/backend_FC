@@ -7,4 +7,4 @@ const asyncHandler = (requestHandler) => {
 // module.exports = asyncHandler;
 // This utility function wraps an asynchronous function to handle errors
 
-export default asyncHandler
+export default asyncHandler;

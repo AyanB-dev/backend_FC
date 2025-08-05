@@ -1,7 +1,7 @@
-import mongoose, { mongo, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
-import asyncHandler from "../utils/asynchandler.js";
+// import asyncHandler from "../utils/asynchandler.js";
 
 const userSchema = new Schema(
     {
@@ -51,19 +51,19 @@ const userSchema = new Schema(
     }
 );
 
-userSchema.pre("save", asyncHandler(async (next) => {
+userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-}));
-
-userSchema.method.isPasswordCorrect = asyncHandler(async (password) => {
-    return await bcrypt.compare(password, this.password);
 });
 
-userSchema.method.generateAccessToken = function () {
-    Jwt.sign({
+userSchema.methods.isPasswordCorrect = async function (next) {
+    return await bcrypt.compare(next, this.password);
+};
+
+userSchema.methods.generateAccessToken = function () {
+    return Jwt.sign({
         _id: this._id,
         email: this.email,
         fullname: this.fullname,
@@ -72,8 +72,8 @@ userSchema.method.generateAccessToken = function () {
     });
 };
 
-userSchema.method.generateRefreshToken = function () {
-    Jwt.sign({
+userSchema.methods.generateRefreshToken = function () {
+    return Jwt.sign({
         _id: this._id,
     }, process.env.REFRESH_TOKEN_SECRET, {
         expiresIn: "10d"
